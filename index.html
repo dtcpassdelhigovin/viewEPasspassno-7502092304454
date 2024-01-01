@@ -449,7 +449,29 @@
 												        blink.style.opacity = (blink.style.opacity == 0 ? 2 : 0);
 												      }, 1000);
 												    </script>
-													<label style="font-size:20px;color:red;"><b>Valid from 16/11/2023 to 15/12/2023 </b></label>
+													<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the current date
+      var currentDate = new Date();
+
+      // Calculate the expiration date (current date + 2 months)
+      var expirationDate = new Date(currentDate);
+      expirationDate.setMonth(currentDate.getMonth() + 2);
+
+      // Format the expiration date
+      var formattedExpirationDate = expirationDate.toISOString().slice(0, 10);
+
+      // Set the expiration date in the HTML
+      document.getElementById("expirationDate").innerText = formattedExpirationDate;
+
+      // Check if the expiration date is past the current date
+      if (expirationDate < currentDate) {
+        // If expired, set the expiration date to the current date
+        document.getElementById("expirationDate").innerText = currentDate.toISOString().slice(0, 10);
+      }
+    });
+													</script>
+													<label style="font-size:20px;color:red;"><b>Valid from 16/11/2023 to 15/12/2023 <span id="expirationDate"></span></b></label>
 												</td>
 											</tr>
 											<tr>
